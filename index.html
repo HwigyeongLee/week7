@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&family=Pinyon+Script&display=swap" rel="stylesheet">
+	<title></title>
+	<style type="text/css">
+
+		body{background-color:black;
+			width: 100%;
+			height: 100%;
+			overflow-x: hidden;
+			overflow-y: hidden;
+			margin: 0;
+		}
+		.Clovers{position: absolute;
+			animation-duration: 2s;
+			animation-name: fadeIn;
+			}
+		@keyframes fadeIn {
+			from{ opacity:0%;
+			 }
+			 to{ opacity: 100%; }
+		} 
+		#Container{width: 100%;
+			height: 100%;
+		}
+		#TopContainer{
+			height: 10vh;
+			display: flex;
+		}
+		#Title{color: green;
+			font-size: 50px;
+			font-family: 'Pinyon Script', cursive;
+			
+			position: absolute;
+			top: 1vh;
+			left: calc(50vw - 114px);
+		}
+		#LuckyScore{color: green;
+			font-size: 40px;
+			font-family: 'Noto Sans KR', sans-serif;
+			text-align: right;
+		    position: absolute;
+		    left: 98vw;
+		    top: 1vh;
+		}
+		#Floor{
+			height: 80vh;
+
+		}
+	
+		
+	</style>
+</head>
+<body>
+	<div id="Container">
+		<div id="TopContainer">
+			<div id="Title">Lucky Point</div>
+			<div id="LuckyScore">0</div>
+		</div>
+		<div id="Floor"></div>
+	</div>
+
+	
+
+	<script type="text/javascript">
+
+		var timer = setTimeout(ddd,100);
+		var t = 0;
+		var score = 0;
+
+		function ddd(){
+		 	
+		 	t++;
+		 	makeClover();
+		 }
+
+		
+		function makeClover(){
+			var a = ["1", "2", "3"];
+
+		for(var i=0; i<200; i++){
+			
+		var t = document.createElement("img");
+		t.className = "Clovers";
+
+		let ran = randomBH(0,2);
+		t.dataset.case = ran;
+		t.src = a[ran] + ".PNG";
+		t.style.width = randomBH(40, 80) + "px";
+		t.style.height = "auto";
+		let b = Math.random()*window.innerWidth - 50;
+		let c = Math.random()*window.innerHeight + 100;
+		t.style.left = b + "px";
+		t.style.top = c + "px";
+	
+		t.onclick = function(){
+			console.log("clicked!!");
+			this.remove();
+			if(this.dataset.case == 0){
+				LuckyScore.innerHTML = score;
+			}else if(this.dataset.case == 1){
+				score++; 
+				LuckyScore.innerHTML = score;
+			}else{
+				score++; 
+				LuckyScore.innerHTML = score;
+			}
+			
+		}
+
+		Floor.appendChild(t);
+
+		}}
+
+		
+
+		function randomBH(min, max){
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+
+	</script>
+</body>
+</html>
+
